@@ -16,6 +16,6 @@ class UsersController < ApplicationController
     private
     def user_params
         #params is a built-in variable that holds all parameters from the url
-        params.require(:user).permit(:first_name, :last_name, :password)
+        params.require(:user).permit(:first_name, :last_name, :user_name, :password)
     end
 end
