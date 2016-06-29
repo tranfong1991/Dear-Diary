@@ -15,25 +15,31 @@
  */
 
  html, body {
-  /*background: #fff;*/
-  /*font-family: Arial, sans-serif;*/
-  /*font-weight: bold;*/
-  /*margin: 0;*/
-  /*padding: 0;*/
-  position: relative;
+  background: #fff;
+  font-family: Arial, sans-serif;
+  font-weight: bold;
+  margin: 0;
+  padding: 0;
+}
+
+.background-image{
+  position: absolute;
   width: 100%;
   height: 100%;
-  background: url(http://www.twitrcovers.com/wp-content/uploads/2013/12/Your-Diary-game-CG-l.jpg) no-repeat center center scroll;;
+  background: url('http://previews.123rf.com/images/liligraphie/liligraphie1404/liligraphie140400217/27559480-open-diary-book-old-accessories-and-postcards-sentimental-vintage-style-background-Stock-Photo.jpg') no-repeat center center scroll;;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   background-size: cover;
   -o-background-size: cover;
+  filter: blur(3px);
+  -webkit-filter: blur(3px);
 }
 
 .container {
   padding: 0;
   width: 100%;
   background-color: white;
+  position: relative;
 }
 
 /* HEADER */
@@ -148,6 +154,7 @@
   padding: 20px 0 10px 0;
   font-size: 16px;
   width: 300px;
+  position: relative;
 }
 
 input[type=text],
