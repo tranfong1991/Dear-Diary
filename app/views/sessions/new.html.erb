@@ -1,16 +1,16 @@
 <div class="login">
-	<div class="form">
-
+    <div class="form">
+    
     <h1>Log in</h1>
     
-		<%= form_for(:session, url: login_path) do |f| %> 
-      <%= f.text_field :user_name, :placeholder => "Username" %> 
-      <%= f.password_field :password, :placeholder => "Password" %> 
-      <%= f.submit "Log in", class: "btn-submit" %>
+    <%= form_for(:session, url: login_path) do |f| %> 
+        <%= f.text_field :user_name, :placeholder => "Username" %> 
+        <%= f.password_field :password, :placeholder => "Password" %> 
+        <%= f.submit "Log in", class: "btn-submit" %>
     <% end %>
     
     <p>Don't have an account yet?</p>
-    <%= link_to "Signup", signup_path %>
-	
-  </div>
+    <%= link_to "Register here", signup_path %>
+    
+    </div>
 </div>
