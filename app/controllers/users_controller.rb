@@ -14,6 +14,7 @@ class UsersController < ApplicationController
                 session[:user_id] = @user.id
                 redirect_to '/'
             else
+                flash[:danger] = "Failed to create account. Please try again."
                 redirect_to '/signup'
             end
         end
