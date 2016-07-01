@@ -1,0 +1,8 @@
+<div class="row">
+    <div class="col-lg-10 col-lg-offset-1 text-center" id="content_div">
+        <%= form_for(@entry) do |f| %>
+          <%= f.text_area :content, :placeholder => "Start typing here", :id => "entry_content" %>
+          <%= f.submit "Save", class: "btn-submit" %>
+        <% end %>
+    </div>
+</div>
