@@ -1,3 +1,9 @@
+<div class="row">
+    <div class="col-lg-12 text-center" style="padding-top: 50px;">
+        <%= button_to "New Entry", '/entries/new', {:class => "btn-submit", :method => 'get'} %>
+    </div>
+</div>
+
 <% @entries.each do |entry| %>
     <h3><%= entry.user_id %></h3>
     <p><%= entry.content %></p>
