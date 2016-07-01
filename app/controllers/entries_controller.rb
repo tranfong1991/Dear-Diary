@@ -3,7 +3,8 @@ class EntriesController < ApplicationController
     
     def index
         current_user_id = session[:user_id]
-        @entries = Entry.where(:user_id => current_user_id)
+        entries = Entry.where(:user_id => current_user_id)
+        @simple_calendar = Clndr.new(:simple)
     end
     
     def new

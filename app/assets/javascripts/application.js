@@ -11,6 +11,9 @@
 // about supported directives.
 //
 //= require jquery
+//= require moment
+//= require underscore
+//= require clndr-rails
 //= require jquery_ujs
 //= require turbolinks
 //= require_tree .
