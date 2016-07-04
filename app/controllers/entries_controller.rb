@@ -2,9 +2,11 @@ class EntriesController < ApplicationController
     before_action :require_user, only: [:index, :show, :new, :create]
     
     def index
-        current_user_id = session[:user_id]
-        entries = Entry.where(:user_id => current_user_id)
+        # current_user_id = session[:user_id]
+        # entries = Entry.where(:user_id => current_user_id)
+        
         @simple_calendar = Clndr.new(:simple)
+        @simple_calendar.template= Clndr::Template::SIMPLE
     end
     
     def new
