@@ -5,8 +5,12 @@ class EntriesController < ApplicationController
         # current_user_id = session[:user_id]
         # entries = Entry.where(:user_id => current_user_id)
         
-        @simple_calendar = Clndr.new(:simple)
-        @simple_calendar.template= Clndr::Template::SIMPLE
+        @full = Clndr.new(:diary_cal)
+        @full.template= Clndr::Template::FULL
+        @full.click_event[:click]="function(target) {
+            if(target.events.length){
+            }
+        }"
     end
     
     def new
