@@ -6,7 +6,8 @@ class EntriesController < ApplicationController
         # entries = Entry.where(:user_id => current_user_id)
         
         @full = Clndr.new(:diary_cal)
-        @full.template= Clndr::Template::FULL
+        @full.start_with_month = Time.now
+        @full.template= Clndr::Template::SIMPLE
         @full.click_event[:click]="function(target) {
             if(target.events.length){
             }

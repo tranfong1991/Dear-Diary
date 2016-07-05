@@ -3,3 +3,19 @@
         <%= @full.view %>
     </div>
 </div>
+
+<div class = "row" style="padding-top: 10px;">
+    <div class="col-lg-4"></div>
+    <div class="col-lg-1 text-center">
+        <%= previous_year_link(:diary_cal,'PrevY',style:'color:red;',class:'nav'){true} %>
+    </div>
+    <div class="col-lg-1 text-center">
+        <%= previous_month_link(:diary_cal,'Prev',style:'color:red;',class:'nav'){true} %>
+    </div>
+    <div class="col-lg-1 text-center">
+        <%= next_month_link(:diary_cal,'Next',style:'color:red;',class:'nav'){true} %>
+    </div>
+    <div class="col-lg-1 text-center">
+        <%= next_year_link(:diary_cal,'NextY',style:'color:red;',class:'nav'){true} %>
+    </div>
+</div>
