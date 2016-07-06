@@ -2,14 +2,19 @@ class EntriesController < ApplicationController
     before_action :require_user, only: [:index, :show, :new, :create]
     
     def index
-        # current_user_id = session[:user_id]
-        # entries = Entry.where(:user_id => current_user_id)
+        current_user_id = session[:user_id]
+        entries = Entry.where(:user_id => current_user_id)
         
         @full = Clndr.new(:diary_cal)
         @full.start_with_month = Time.now
         @full.template= Clndr::Template::SIMPLE
+        entries.each do |entry|
+            @full.add_event(Time.now, entry.id.to_s)
+        end
         @full.click_event[:click]="function(target) {
+            console.log(target);
             if(target.events.length){
+                
             }
         }"
     end
