@@ -28,6 +28,11 @@
   color: white;
 }
 
+.flash-message-wrapper{
+  position: fixed;
+  /*width: 100%;*/
+}
+
 .background-image{
   position: absolute;
   width: 100%;
