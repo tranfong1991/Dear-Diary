@@ -9,12 +9,14 @@ class EntriesController < ApplicationController
         @full.start_with_month = Time.now
         @full.template= Clndr::Template::SIMPLE
         entries.each do |entry|
-            @full.add_event(Time.now, entry.id.to_s)
+            @full.add_event(entry.created_at, entry.id.to_s, description: entry.content)
         end
         @full.click_event[:click]="function(target) {
             console.log(target);
             if(target.events.length){
-                
+                $('#diary-date').html(target.date._i);
+                $('#diary-content').html(target.events[0].description);
+                $('#diary-modal').modal('show');
             }
         }"
     end
