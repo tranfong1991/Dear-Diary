@@ -12,7 +12,6 @@ class EntriesController < ApplicationController
             @full.add_event(entry.created_at, entry.id.to_s, description: entry.content)
         end
         @full.click_event[:click]="function(target) {
-            console.log(target);
             if(target.events.length){
                 $('#diary-date').html(target.date._i);
                 $('#diary-content').html(target.events[0].description);

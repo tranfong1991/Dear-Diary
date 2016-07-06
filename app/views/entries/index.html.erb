@@ -1,5 +1,8 @@
 <div class="row">
-    <div class="col-lg-10 col-lg-offset-1 text-center" style="padding-top: 10px;">
+    <div class="col-lg-10 col-lg-offset-1 text-center" style="padding-top: 20px;">
+        <%= button_to "New Entry", '/entries/new', {:class => "btn-submit", :method => 'get'} %>
+    </div>
+    <div class="col-lg-10 col-lg-offset-1 text-center" style="padding-top: 20px;">
         <%= @full.view %>
     </div>
 </div>
