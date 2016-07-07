@@ -4,7 +4,7 @@ class UsersController < ApplicationController
     end
     
     def settings
-        @current_user = current_user
+        @user = current_user
     end
     
     def create
@@ -18,7 +18,9 @@ class UsersController < ApplicationController
                 session[:user_id] = @user.id
                 redirect_to '/'
             else
-                flash[:danger] = "Failed to create account. Please try again."
+                @user.errors.full_messages.each do |message|
+                    flash[:danger] = message
+                end
                 redirect_to '/signup'
             end
         end
@@ -35,6 +37,6 @@ class UsersController < ApplicationController
     
     def user_params
         #params is a built-in variable that holds all parameters from the url
-        params.require(:user).permit(:first_name, :last_name, :user_name, :password)
+        params.require(:user).permit(:first_name, :last_name, :user_name, :password, :password_confirmation)
     end
 end

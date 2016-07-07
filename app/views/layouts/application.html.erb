@@ -11,10 +11,10 @@
   <div class="header">
     <div class="container">
       <%= link_to root_path do %>
-        <img src="http://s3.amazonaws.com/codecademy-content/courses/rails-auth/img/fotofoto-logo.svg" width="80" height="80"> Dear Diary
+        <img src="http://s3.amazonaws.com/codecademy-content/courses/rails-auth/img/fotofoto-logo.svg" width="10" height="10"> Dear Diary
       <% end %>
 
-      <div class="nav pull-right">
+      <div class="pull-right">
         <% if current_user %> 
         <ul> 
           <li>
@@ -39,11 +39,6 @@
       <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
       <% end -%>
     <% end %>
-  </div>
-  
-  <!--This is for making enough space between flash message and contents below it-->
-  <div class="row">
-    <div class="col-lg-12" style="padding-top: 10px;"></div>
   </div>
 
   <%= yield %>
