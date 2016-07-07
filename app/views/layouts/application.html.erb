@@ -17,8 +17,15 @@
       <div class="nav pull-right">
         <% if current_user %> 
         <ul> 
-          <li><%= current_user.first_name %> <%= current_user.last_name %></li> 
-          <li><%= link_to "Log out", logout_path, method: "delete" %></li> 
+          <li>
+            <div class="dropdown">
+              <button class="dropbtn"><%= current_user.first_name %> <%= current_user.last_name %> &#9660</button>
+              <div class="dropdown-content">
+                <a href="#"><%= fa_icon 'cog' %> Settings</a>
+                <%= link_to "<i class='fa fa-sign-out'></i> Log out".html_safe, logout_path, method: "delete" %>
+              </div>
+            </div>
+          </li>
         </ul> 
         <% end %>
       </div>
