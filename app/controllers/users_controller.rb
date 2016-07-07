@@ -3,6 +3,10 @@ class UsersController < ApplicationController
         @user = User.new
     end
     
+    def settings
+        @current_user = current_user
+    end
+    
     def create
         if not unique_username?
             flash[:warning] = "Username already exists. Please choose another one."

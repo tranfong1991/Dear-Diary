@@ -1,9 +1,8 @@
 class EntriesController < ApplicationController
-    before_action :require_user, only: [:index, :show, :new, :create]
+    before_action :require_user, only: [:index, :new, :create]
     
     def index
-        current_user_id = session[:user_id]
-        entries = Entry.where(:user_id => current_user_id)
+        entries = Entry.where(:user_id => current_user.id)
         
         @full = Clndr.new(:diary_cal)
         @full.start_with_month = Time.now
@@ -28,9 +27,8 @@ class EntriesController < ApplicationController
     end
     
     def create
-        current_user_id = session[:user_id]
         @entry = Entry.new(entry_params)
-        @entry.user_id = current_user_id
+        @entry.user_id = current_user.id
         if @entry.save
             flash[:success] = "Entry successfully saved."
         else

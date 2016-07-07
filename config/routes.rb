@@ -15,6 +15,7 @@ Rails.application.routes.draw do
   resources :entries
   
   get 'signup' => 'users#new'
+  get 'settings' => 'users#settings'
   resources :users
   
   get 'login' => 'sessions#new'
