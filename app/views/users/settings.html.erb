@@ -1,18 +1,38 @@
 <div class="login">
   <div class="form">
 
-    <h1>Sign up</h1>
+    <h1>User info</h1>
 
     <%= form_for(@user) do |f| %>
       <%= f.text_field :first_name, :placeholder => "First name" %>
       <%= f.text_field :last_name, :placeholder => "Last name" %>
       <%= f.text_field :user_name, :placeholder => "Username" %>
       <%= f.password_field :password, :placeholder => "Password" %>
-      <%= f.submit "Create an account", class: "btn-submit" %>
+      <%= f.submit "Update", class: "btn-submit" %>
     <% end %>
-    
-    <p>Already have an account?</p>
-    <%= link_to "Login", login_path%>
+    </br>
+    <button class="btn-primary" data-toggle="modal" data-target="#warning-modal">DELETE ACCOUNT</button>
 
+  </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="warning-modal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h3 class="modal-title">Delete this account?</h3>
+      </div>
+      <div class="modal-body">
+        <p>If you choose to delete this account, all your diary entries will be deleted as well. Are you sure?</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+        <%= form_for(@user, method: :delete) do |f| %>
+            <% f.submit 'Delete', class: 'btn-primary' %>
+        <% end %>
+      </div>
+    </div>
   </div>
 </div>

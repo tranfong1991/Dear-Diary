@@ -23,12 +23,11 @@ class EntriesController < ApplicationController
     end
     
     def new
-        @entry = Entry.new
+        @entry = current_user.entries.new
     end
     
     def create
-        @entry = Entry.new(entry_params)
-        @entry.user_id = current_user.id
+        @entry = current_user.entries.new(entry_params)
         if @entry.save
             flash[:success] = "Entry successfully saved."
         else

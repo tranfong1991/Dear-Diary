@@ -7,6 +7,10 @@ class UsersController < ApplicationController
         @user = current_user
     end
     
+    def update
+        
+    end
+    
     def create
         if not unique_username?
             flash[:warning] = "Username already exists. Please choose another one."
@@ -24,6 +28,14 @@ class UsersController < ApplicationController
                 redirect_to '/signup'
             end
         end
+    end
+    
+    def destroy
+        user = User.find(params[:id])
+        user.destroy
+        
+        session[:user_id] = nil
+        redirect_to '/'
     end
     
     private

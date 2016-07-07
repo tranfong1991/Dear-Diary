@@ -16,6 +16,7 @@ Rails.application.routes.draw do
   
   get 'signup' => 'users#new'
   get 'settings' => 'users#settings'
+  patch 'users/:id' => 'users#update'
   resources :users
   
   get 'login' => 'sessions#new'
