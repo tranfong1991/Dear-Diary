@@ -3,7 +3,7 @@
         <%= form_for(@entry) do |f| %>
           <%= f.text_area :content, :placeholder => "Start typing here...", :id => "entry_content" %>
           <%= link_to "Cancel", '/entries' %>
-          <%= f.submit "Save", class: "btn-submit" %>
+          <%= f.submit "Save", class: "btn-primary" %>
         <% end %>
     </div>
 </div>

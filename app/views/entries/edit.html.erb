@@ -3,7 +3,11 @@
         <%= form_for(@entry) do |f| %>
           <%= f.text_area :content, :placeholder => @entry.content, :id => "entry_content" %>
           <%= link_to "Cancel", '/entries' %>
-          <%= f.submit "Update", class: "btn-submit" %>
+          <%= f.submit "Update", class: "btn-primary" %>
+        <% end %>
+        </br>
+        <%= form_for(@entry, method: :delete) do |f| %>
+            <%= f.submit "DELETE", class: "btn-submit" %>
         <% end %>
     </div>
 </div>
