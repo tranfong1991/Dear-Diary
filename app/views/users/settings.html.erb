@@ -6,11 +6,10 @@
     <%= form_for(@user) do |f| %>
       <%= f.text_field :first_name, :placeholder => "First name" %>
       <%= f.text_field :last_name, :placeholder => "Last name" %>
-      <%= f.text_field :user_name, :placeholder => "Username" %>
-      <%= f.submit "Update", class: "btn-submit" %>
+      <%= f.submit "Update", class: "btn-primary" %>
     <% end %>
     </br>
-    <button class="btn-primary" data-toggle="modal" data-target="#warning-modal">DELETE ACCOUNT</button>
+    <button class="btn-submit" data-toggle="modal" data-target="#warning-modal">DELETE ACCOUNT</button>
 
   </div>
 </div>
@@ -27,9 +26,10 @@
         <p>If you choose to delete this account, all your diary entries will be deleted as well. Are you sure?</p>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
         <%= form_for(@user, method: :delete) do |f| %>
-            <% f.submit 'Delete', class: 'btn-primary' %>
+            <!-- Put javscript:; to make it a no-op anchor tag -->
+            <%= link_to 'Cancel', 'javascript:;', 'data-dismiss': 'modal' %>
+            <%= f.submit 'Delete', class: 'btn-submit' %>
         <% end %>
       </div>
     </div>
