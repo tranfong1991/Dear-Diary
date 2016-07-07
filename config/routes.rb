@@ -9,8 +9,10 @@ Rails.application.routes.draw do
   #   get 'products/:id' => 'catalog#view'
   get 'entries' => 'entries#index'
   get 'entries/new' => 'entries#new'
-  get 'entries/:id' => 'entries#show'
+  get 'entries/:id/edit' => 'entries#edit', as: :edit_entry
+  patch 'entries/:id' => 'entries#update'
   post 'entries' => 'entries#create'
+  resources :entries
   
   get 'signup' => 'users#new'
   resources :users

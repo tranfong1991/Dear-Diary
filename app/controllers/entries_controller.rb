@@ -15,6 +15,9 @@ class EntriesController < ApplicationController
             if(target.events.length){
                 $('#diary-date').html(target.date._i);
                 $('#diary-content').html(target.events[0].description);
+                $('#edit-btn').click(function(){
+                    location.href='entries/' + target.events[0].title + '/edit';
+                });
                 $('#diary-modal').modal('show');
             }
         }"
@@ -22,10 +25,6 @@ class EntriesController < ApplicationController
     
     def new
         @entry = Entry.new
-    end
-    
-    def show
-        @entry = Entry.find(params[:id])
     end
     
     def create
@@ -38,6 +37,19 @@ class EntriesController < ApplicationController
             flash[:danger] = "Failed to save entry. Please try again."
         end
         redirect_to '/'
+    end
+    
+    def edit
+        @entry = Entry.find(params[:id])
+    end
+    
+    def update
+        @entry = Entry.find(params[:id])
+        if @entry.update_attributes(entry_params)
+            redirect_to '/'
+        else
+            render 'edit'
+        end
     end
     
     private
