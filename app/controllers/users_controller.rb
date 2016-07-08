@@ -13,9 +13,21 @@ class UsersController < ApplicationController
         @user = current_user
     end
     
-    def update
+    def update_account
+        if current_user.update_password(update_user_params)
+            flash[:success] = "Password successfully updated."
+            redirect_to '/'
+        else
+            current_user.errors.full_messages.each do |message|
+                flash[:danger] = message
+            end
+            redirect_to :back
+        end
+    end
+    
+    def update_profile
         if current_user.update_attributes(update_user_params)
-            flash[:success] = "Successfully updated."
+            flash[:success] = "Profile successfully updated."
         else
             current_user.errors.full_messages.each do |message|
                 flash[:danger] = message

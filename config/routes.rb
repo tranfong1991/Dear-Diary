@@ -17,6 +17,8 @@ Rails.application.routes.draw do
   get 'signup' => 'users#new'
   get 'profile' => 'users#profile'
   get 'account' => 'users#account'
+  patch 'account' => 'users#update_account', as: :update_account
+  patch 'profile' => 'users#update_profile', as: :update_profile
   resources :users
   
   get 'login' => 'sessions#new'

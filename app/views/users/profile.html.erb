@@ -3,9 +3,9 @@
 
     <h1>User Profile</h1>
 
-    <%= form_for(@user) do |f| %>
-      <%= f.text_field :first_name, :placeholder => "First name" %>
-      <%= f.text_field :last_name, :placeholder => "Last name" %>
+    <%= form_for(@user, url: :update_profile) do |f| %>
+      <%= f.text_field :first_name, :placeholder => "First name", required: true %>
+      <%= f.text_field :last_name, :placeholder => "Last name", required: true %>
       <%= f.submit "Update", class: "btn-primary" %>
     <% end %>
     </br>
