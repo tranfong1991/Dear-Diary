@@ -1,12 +1,13 @@
 <div class="login">
   <div class="form">
 
-    <h1>User info</h1>
+    <h1>Change Password</h1>
 
     <%= form_for(@user) do |f| %>
-      <%= f.text_field :first_name, :placeholder => "First name" %>
-      <%= f.text_field :last_name, :placeholder => "Last name" %>
-      <%= f.submit "Update", class: "btn-primary" %>
+        <%= f.password_field :old_password, :placeholder => "Old Password" %>
+        <%= f.password_field :password, :placeholder => "New Password (at least 8 characters)" %>
+        <%= f.password_field :password_confirmation, :placeholder => "Confirm Password" %>
+        <%= f.submit "Update", class: "btn-primary" %>
     <% end %>
     </br>
     <button class="btn-submit" data-toggle="modal" data-target="#account-warning-modal">DELETE ACCOUNT</button>

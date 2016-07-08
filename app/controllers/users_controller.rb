@@ -5,12 +5,23 @@ class UsersController < ApplicationController
         @user = User.new
     end
     
-    def settings
+    def profile
+        @user = current_user
+    end
+    
+    def account
         @user = current_user
     end
     
     def update
-        
+        if current_user.update_attributes(update_user_params)
+            flash[:success] = "Successfully updated."
+        else
+            current_user.errors.full_messages.each do |message|
+                flash[:danger] = message
+            end
+        end
+        redirect_to :back
     end
     
     def create
@@ -20,7 +31,7 @@ class UsersController < ApplicationController
         else
             @user = User.new(user_params)
             if @user.save
-                flash[:success] = "New account created."
+                flash[:success] = "Account successfully created."
                 session[:user_id] = @user.id
                 redirect_to '/'
             else
@@ -37,6 +48,7 @@ class UsersController < ApplicationController
         user.destroy
         
         session[:user_id] = nil
+        flash[:success] = "Account successfully deleted."
         redirect_to '/'
     end
     
@@ -47,6 +59,10 @@ class UsersController < ApplicationController
           return true
         end
         return false
+    end
+    
+    def update_user_params
+        params.require(:user).permit(:first_name, :last_name, :old_password, :password, :password_confirmation)
     end
     
     def user_params

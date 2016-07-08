@@ -1,0 +1,14 @@
+<div class="login">
+  <div class="form">
+
+    <h1>User Profile</h1>
+
+    <%= form_for(@user) do |f| %>
+      <%= f.text_field :first_name, :placeholder => "First name" %>
+      <%= f.text_field :last_name, :placeholder => "Last name" %>
+      <%= f.submit "Update", class: "btn-primary" %>
+    <% end %>
+    </br>
+
+  </div>
+</div>
