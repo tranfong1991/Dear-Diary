@@ -26,7 +26,13 @@ class EntriesController < ApplicationController
     end
     
     def new
-        @entry = current_user.entries.new
+        entry = Entry.where("created_at >= ?", Time.zone.now.beginning_of_day).first
+        if entry.nil?
+            @entry = current_user.entries.new
+        else
+            flash[:warning] = "You already wrote one today. Please edit the existing one."
+            redirect_to '/'
+        end
     end
     
     def create
