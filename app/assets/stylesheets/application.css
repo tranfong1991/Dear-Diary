@@ -15,6 +15,10 @@
  *= require clndr-rails
  *= require font-awesome
  */
+ 
+ #header-title{
+   font-family: Copperplate, "Copperplate Gothic Light", fantasy
+ }
 
 .dropbtn {
     background-color: #c91717;
