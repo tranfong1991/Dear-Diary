@@ -6,8 +6,26 @@
           <%= f.submit "Update", class: "btn-primary" %>
         <% end %>
         </br>
-        <%= form_for(@entry, method: :delete) do |f| %>
-            <%= f.submit "DELETE", class: "btn-submit" %>
-        <% end %>
+        <button class="btn-submit" data-toggle="modal" data-target="#entry-warning-modal">DELETE</button>
+        
     </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="entry-warning-modal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h3 class="modal-title">Delete this entry?</h3>
+      </div>
+      <div class="modal-footer">
+        <%= form_for(@entry, method: :delete) do |f| %>
+            <!-- Put javscript:; to make it a no-op anchor tag -->
+            <%= link_to 'Cancel', 'javascript:;', 'data-dismiss': 'modal' %>
+            <%= f.submit 'Delete', class: 'btn-submit' %>
+        <% end %>
+      </div>
+    </div>
+  </div>
 </div>
