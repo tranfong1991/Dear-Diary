@@ -1,3 +1,5 @@
+include ActionView::Helpers::TextHelper
+
 class EntriesController < ApplicationController
     before_action :require_user, only: [:index, :new, :create]
     
@@ -8,7 +10,8 @@ class EntriesController < ApplicationController
         @full.start_with_month = Time.now
         @full.template= Clndr::Template::SIMPLE
         entries.each do |entry|
-            @full.add_event(entry.created_at, entry.id.to_s, description: entry.content)
+            content = entry.content.gsub(/(?:\n\r?|\r\n?)/, '<br>')
+            @full.add_event(entry.created_at, entry.id.to_s, description: content)
         end
         @full.click_event[:click]="function(target) {
             if(target.events.length){
