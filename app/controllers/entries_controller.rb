@@ -39,10 +39,11 @@ class EntriesController < ApplicationController
         @entry = current_user.entries.new(entry_params)
         if @entry.save
             flash[:success] = "Entry successfully saved."
+            redirect_to '/'
         else
             flash[:danger] = "Failed to save entry. Please try again."
+            redirect_to :back
         end
-        redirect_to '/'
     end
     
     def edit

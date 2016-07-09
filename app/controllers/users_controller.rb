@@ -28,30 +28,26 @@ class UsersController < ApplicationController
     def update_profile
         if current_user.update_attributes(update_user_params)
             flash[:success] = "Profile successfully updated."
+            redirect_to '/'
         else
             current_user.errors.full_messages.each do |message|
                 flash[:danger] = message
             end
+            redirect_to :back
         end
-        redirect_to :back
     end
     
     def create
-        if not unique_username?
-            flash[:warning] = "Username already exists. Please choose another one."
-            redirect_to '/signup'
+        @user = User.new(user_params)
+        if @user.save
+            flash[:success] = "Account successfully created."
+            session[:user_id] = @user.id
+            redirect_to '/'
         else
-            @user = User.new(user_params)
-            if @user.save
-                flash[:success] = "Account successfully created."
-                session[:user_id] = @user.id
-                redirect_to '/'
-            else
-                @user.errors.full_messages.each do |message|
-                    flash[:danger] = message
-                end
-                redirect_to '/signup'
+            @user.errors.full_messages.each do |message|
+                flash[:danger] = message
             end
+            redirect_to :back
         end
     end
     
@@ -65,14 +61,6 @@ class UsersController < ApplicationController
     end
     
     private
-    def unique_username?
-        user = User.find_by_user_name(params[:user][:user_name])
-        if user.nil?
-          return true
-        end
-        return false
-    end
-    
     def update_user_params
         params.require(:user).permit(:first_name, :last_name, :old_password, :password, :password_confirmation)
     end
