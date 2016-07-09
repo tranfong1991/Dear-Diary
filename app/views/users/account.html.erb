@@ -4,9 +4,9 @@
     <h1>Change Password</h1>
 
     <%= form_for(@user, url: :update_account) do |f| %>
-        <%= f.password_field :old_password, :placeholder => "Old Password" %>
-        <%= f.password_field :password, :placeholder => "New Password (at least 8 characters)" %>
-        <%= f.password_field :password_confirmation, :placeholder => "Confirm Password" %>
+        <%= f.password_field :old_password, :placeholder => "Old Password", required: true %>
+        <%= f.password_field :password, :placeholder => "New Password (at least 8 characters)", required: true %>
+        <%= f.password_field :password_confirmation, :placeholder => "Confirm Password", required: true %>
         <%= f.submit "Update", class: "btn-primary" %>
     <% end %>
     </br>
