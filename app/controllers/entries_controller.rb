@@ -41,7 +41,9 @@ class EntriesController < ApplicationController
             flash[:success] = "Entry successfully saved."
             redirect_to '/'
         else
-            flash[:danger] = "Failed to save entry. Please try again."
+            @entry.errors.full_messages.each do |message|
+                flash[:danger] = message
+            end
             redirect_to :back
         end
     end
