@@ -1,6 +1,7 @@
 <div class="row">
     <div class="col-lg-10 col-lg-offset-1 text-center" id="content_div">
         <%= form_for(@entry) do |f| %>
+          <%= date_field :entry, :created_at, :placeholder => @entry.created_at %>
           <%= f.text_area :content, :placeholder => @entry.content, :id => "entry_content" %>
           <%= link_to "Cancel", '/entries' %>
           <%= f.submit "Update", class: "btn-primary" %>
