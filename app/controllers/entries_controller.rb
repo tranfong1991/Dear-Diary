@@ -6,7 +6,7 @@ class EntriesController < ApplicationController
     def getEntry
         if Entry.exists? params[:id]
             entry = Entry.find(params[:id])
-            if entry.user_id == 22
+            if entry.user_id == current_user.id
                 render json: {'content': entry.content}
             else
                 render json: {status: 404}
