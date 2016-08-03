@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   get 'entries/:id/edit' => 'entries#edit', as: :edit_entry
   patch 'entries/:id' => 'entries#update'
   post 'entries' => 'entries#create'
+  get 'api/entries/:id' => "entries#getEntry"
   resources :entries
   
   get 'signup' => 'users#new'

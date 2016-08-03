@@ -1,7 +1,20 @@
 include ActionView::Helpers::TextHelper
 
 class EntriesController < ApplicationController
-    before_action :require_user, only: [:index, :new, :create]
+    before_action :require_user, only: [:getEntry, :index, :new, :create, :edit, :update, :destroy]
+    
+    def getEntry
+        if Entry.exists? params[:id]
+            entry = Entry.find(params[:id])
+            if entry.user_id == 22
+                render json: {'content': entry.content}
+            else
+                render json: {status: 404}
+            end
+        else
+            render json: {status: 404}
+        end
+    end
     
     def index
         entries = Entry.where(:user_id => current_user.id)
@@ -11,22 +24,29 @@ class EntriesController < ApplicationController
         @full.template= Clndr::Template::SIMPLE
         entries.each do |entry|
             content = entry.content.gsub(/(?:\n\r?|\r\n?)/, '<br>')
-            @full.add_event(entry.created_at, entry.id.to_s, description: content)
+            
+            # add_event(date, name, other data)
+            @full.add_event(entry.created_at, entry.id.to_s)
         end
         @full.click_event[:click]="function(target) {
             if(target.events.length){
                 $('#diary-date').html(target.date._i);
-                $('#diary-content').html(target.events[0].description);
                 $('#edit-btn').click(function(){
                     location.href='entries/' + target.events[0].title + '/edit';
                 });
                 $('#diary-modal').modal('show');
+                
+                $.ajax('http://ruby-on-rails-tranfong1991.c9users.io:8080/api/entries/' + target.events[0].title, {
+                    success: function(data){
+                        $('#diary-content').html(data.content);
+                    }
+                });
             }
         }"
     end
     
     def new
-        entry = Entry.where("created_at >= ?", Time.zone.now.beginning_of_day).first
+        entry = Entry.where("created_at >= ? AND user_id = ?", Time.zone.now.beginning_of_day, current_user.id).first
         if entry.nil?
             @entry = current_user.entries.new
         else
@@ -49,21 +69,39 @@ class EntriesController < ApplicationController
     end
     
     def edit
-        @entry = Entry.find(params[:id])
+        entries = Entry.where("id = ? AND user_id = ?", params[:id], current_user.id)
+        if entries.blank?
+            flash[:danger] = "No such entry!"
+            redirect_to '/'
+        end
+        @entry = entries.first
     end
     
     def update
-        @entry = Entry.find(params[:id])
-        if @entry.update_attributes(entry_params)
+        entries = Entry.where("id = ? AND user_id = ?", params[:id], current_user.id)
+        if entries.blank?
+            flash[:danger] = "No such entry!"
             redirect_to '/'
         else
-            render 'edit'
+            entry = entries.first
+            if entry.update_attributes(entry_params)
+                flash[:success] = "Successfully updated entry!"
+                redirect_to '/'
+            else
+                flash[:warning] = "Failed to update entry!"
+                render 'edit'
+            end
         end
     end
     
     def destroy
-        @entry = Entry.find(params[:id])
-        @entry.destroy
+        entries = Entry.where("id = ? AND user_id = ?", params[:id], current_user.id)
+        if entries.blank?
+            flash[:danger] = "No such entry!"
+        else
+            flash[:success] = "Successfully deleted entry!"
+            entries.first.destroy
+        end
         redirect_to '/'
     end
     
