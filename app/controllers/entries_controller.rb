@@ -7,7 +7,8 @@ class EntriesController < ApplicationController
         if Entry.exists? params[:id]
             entry = Entry.find(params[:id])
             if entry.user_id == current_user.id
-                render json: {'content': entry.content}
+                content = entry.content.gsub(/(?:\n\r?|\r\n?)/, '<br>')
+                render json: {'content': content}
             else
                 render json: {status: 404}
             end
@@ -23,8 +24,6 @@ class EntriesController < ApplicationController
         @full.start_with_month = Time.now
         @full.template= Clndr::Template::SIMPLE
         entries.each do |entry|
-            content = entry.content.gsub(/(?:\n\r?|\r\n?)/, '<br>')
-            
             # add_event(date, name, other data)
             @full.add_event(entry.created_at, entry.id.to_s)
         end
