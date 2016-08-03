@@ -36,7 +36,7 @@ class EntriesController < ApplicationController
                 });
                 $('#diary-modal').modal('show');
                 
-                $.ajax('http://ruby-on-rails-tranfong1991.c9users.io:8080/api/entries/' + target.events[0].title, {
+                $.ajax('http://52.40.168.213:3000/api/entries/' + target.events[0].title, {
                     success: function(data){
                         $('#diary-content').html(data.content);
                     }
