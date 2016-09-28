@@ -5,13 +5,15 @@
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
+  <%= favicon_link_tag 'notebook.png'%>
 </head>
 <body>
   <div class="background-image"></div>
   <div class="header">
     <div class="container">
       <%= link_to root_path do %>
-        <img src="http://cdn.portableapps.com/RedNotebookPortable_128.png" width="50" height="50"> <span id="header-title">Dear Diary</span>
+      <%= image_tag 'notebook.png' %>
+      <span id="header-title">Dear Diary</span>
       <% end %>
 
       <div class="pull-right">
