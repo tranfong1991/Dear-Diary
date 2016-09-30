@@ -35,7 +35,7 @@ class EntriesController < ApplicationController
                 });
                 $('#diary-modal').modal('show');
                 
-                $.ajax('http://52.40.168.213:3000/api/entries/' + target.events[0].title, {
+                $.ajax('http://immense-gorge-62944.herokuapp.com/api/entries/' + target.events[0].title, {
                     success: function(data){
                         $('#diary-content').html(data.content);
                     }
