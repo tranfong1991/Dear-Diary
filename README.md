@@ -1,4 +1,4 @@
 # Dear Diary
 A simple diary web application
 
-http://52.40.168.213:3000
+http://immense-gorge-62944.herokuapp.com/
