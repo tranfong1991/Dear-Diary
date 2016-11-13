@@ -2,7 +2,7 @@ include ActionView::Helpers::TextHelper
 
 class EntriesController < ApplicationController
     before_action :require_user, only: [:getEntry, :index, :new, :create, :edit, :update, :destroy]
-    
+
     def getEntry
         if Entry.exists? params[:id]
             entry = Entry.find(params[:id])
@@ -16,10 +16,10 @@ class EntriesController < ApplicationController
             render json: {status: 404}
         end
     end
-    
+
     def index
         entries = Entry.where(:user_id => current_user.id)
-        
+
         @full = Clndr.new(:diary_cal)
         @full.start_with_month = Time.now
         @full.template= Clndr::Template::SIMPLE
@@ -34,8 +34,8 @@ class EntriesController < ApplicationController
                     location.href='entries/' + target.events[0].title + '/edit';
                 });
                 $('#diary-modal').modal('show');
-                
-                $.ajax('http://deardiary-2016.herokuapp.com/api/entries/' + target.events[0].title, {
+
+                $.ajax('https://deardiary-2016.herokuapp.com/api/entries/' + target.events[0].title, {
                     success: function(data){
                         $('#diary-content').html(data.content);
                     }
@@ -43,7 +43,7 @@ class EntriesController < ApplicationController
             }
         }"
     end
-    
+
     def new
         entry = Entry.where("created_at >= ? AND user_id = ?", Time.zone.now.beginning_of_day, current_user.id).first
         if entry.nil?
@@ -53,7 +53,7 @@ class EntriesController < ApplicationController
             redirect_to '/'
         end
     end
-    
+
     def create
         @entry = current_user.entries.new(entry_params)
         if @entry.save
@@ -66,7 +66,7 @@ class EntriesController < ApplicationController
             redirect_to :back
         end
     end
-    
+
     def edit
         entries = Entry.where("id = ? AND user_id = ?", params[:id], current_user.id)
         if entries.blank?
@@ -75,7 +75,7 @@ class EntriesController < ApplicationController
         end
         @entry = entries.first
     end
-    
+
     def update
         entries = Entry.where("id = ? AND user_id = ?", params[:id], current_user.id)
         if entries.blank?
@@ -92,7 +92,7 @@ class EntriesController < ApplicationController
             end
         end
     end
-    
+
     def destroy
         entries = Entry.where("id = ? AND user_id = ?", params[:id], current_user.id)
         if entries.blank?
@@ -103,7 +103,7 @@ class EntriesController < ApplicationController
         end
         redirect_to '/'
     end
-    
+
     private
     def entry_params
         params.require(:entry).permit(:content, :created_at)
