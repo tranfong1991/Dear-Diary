@@ -9,3 +9,9 @@ textarea#entry_content{
     width: 100%;
     height: 300px;
 }
+
+p#diary-content{
+	max-height: 420px;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
