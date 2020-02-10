@@ -35,7 +35,7 @@ class EntriesController < ApplicationController
                 });
                 $('#diary-modal').modal('show');
 
-                $.ajax('https://deardiary-2016.herokuapp.com/api/entries/' + target.events[0].title, {
+                $.ajax('https://deerdiary.herokuapp.com/api/entries/' + target.events[0].title, {
                     success: function(data){
                         $('#diary-content').html(data.content);
                     }
