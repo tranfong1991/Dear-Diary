@@ -15,6 +15,7 @@ Rails.application.routes.draw do
   get 'api/entries/:id' => "entries#getEntry"
   resources :entries
   
+  get 'signup' => 'users#new'
   get 'profile' => 'users#profile'
   get 'account' => 'users#account'
   patch 'account' => 'users#update_account', as: :update_account
