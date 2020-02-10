@@ -1,10 +1,6 @@
 class UsersController < ApplicationController
     before_action :require_user, only: [:profile, :account, :update_account, :update_profile, :destroy]
     
-    def new
-        @user = User.new
-    end
-    
     def profile
         @user = current_user
     end
