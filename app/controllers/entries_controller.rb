@@ -45,16 +45,21 @@ class EntriesController < ApplicationController
     end
 
     def new
-        entry = Entry.where("created_at >= ? AND user_id = ?", Time.zone.now.beginning_of_day, current_user.id).first
-        if entry.nil?
-            @entry = current_user.entries.new
-        else
-            flash[:warning] = "You already wrote one today. Please edit the existing one."
-            redirect_to '/'
-        end
+        @entry = current_user.entries.new
     end
 
     def create
+        entry = Entry.where("created_at >= ? AND user_id = ?", entry_params[:created_at], current_user.id).first
+        if not entry.nil?
+            # Have to use flash.now so that it doesn't linger after pressing 'cancel'
+            flash.now[:warning] = "Entry already exists for this day. Please edit the existing one."
+
+            # Repopulate @entry so that the page retains form data
+            @entry = current_user.entries.new(entry_params)
+            render :new
+            return
+        end
+
         @entry = current_user.entries.new(entry_params)
         if @entry.save
             flash[:success] = "Entry successfully saved."
