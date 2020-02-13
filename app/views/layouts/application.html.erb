@@ -58,14 +58,16 @@
   <%= yield %>
 
   <!-- Footer -->
-  <footer>
-    <div class="footer">
-      <div class="row">
-        <div class="col-lg-10 col-lg-offset-1 text-center">
-          <p class="text-muted">Created by <%= link_to "Andy Tran"," http://www.tranandy.com", :target => "_blank" %>, the only allowed user of this site.</p>
+  <% if not current_user  %>
+    <footer>
+      <div class="footer">
+        <div class="row">
+          <div class="col-lg-10 col-lg-offset-1 text-center">
+            <p class="text-muted">Created by <%= link_to "Andy Tran"," http://www.tranandy.com", :target => "_blank" %>, the only allowed user of this site.</p>
+          </div>
         </div>
       </div>
-    </div>
-  </footer>
+    </footer>
+  <% end %>
 </body>
 </html>
