@@ -49,7 +49,7 @@ class EntriesController < ApplicationController
     end
 
     def create
-        entry = Entry.where("created_at >= ? AND user_id = ?", entry_params[:created_at], current_user.id).first
+        entry = Entry.where("created_at = ? AND user_id = ?", entry_params[:created_at], current_user.id).first
         if not entry.nil?
             # Have to use flash.now so that it doesn't linger after pressing 'cancel'
             flash.now[:warning] = "Entry already exists for this day. Please edit the existing one."
