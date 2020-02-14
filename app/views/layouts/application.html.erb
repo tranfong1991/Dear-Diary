@@ -33,10 +33,26 @@
             <div class="dropdown">
               <button class="dropbtn"><%= current_user.first_name %> <%= current_user.last_name %> &#9660</button>
               <div class="dropdown-content">
-                <%= link_to "<i class='fa fa-book'></i> Entries".html_safe, entries_path %>
-                <%= link_to "<i class='fa fa-user'></i> Profile".html_safe, profile_path %>
-                <%= link_to "<i class='fa fa-cog'></i> Account".html_safe, account_path %>
-                <%= link_to "<i class='fa fa-sign-out'></i> Log out".html_safe, logout_path, method: "delete" %>
+                <%= link_to "
+                  <div class='dropdown-row'>
+                    <div><i class='fa fa-book'></i></div>
+                    <div>Entries</div>
+                  </div>".html_safe, entries_path %>
+                <%= link_to "
+                  <div class='dropdown-row'>
+                    <div><i class='fa fa-user'></i></div>
+                    <div>Profile</div>
+                  </div>".html_safe, profile_path %>
+                <%= link_to "
+                  <div class='dropdown-row'>
+                    <div><i class='fa fa-cog'></i></div>
+                    <div>Account</div>
+                  </div>".html_safe, account_path %>
+                <%= link_to "
+                  <div class='dropdown-row'>
+                    <div><i class='fa fa-sign-out'></i></div>
+                    <div>Log out</div>
+                  </div>".html_safe, logout_path, method: "delete" %>
               </div>
             </div>
           </li>
