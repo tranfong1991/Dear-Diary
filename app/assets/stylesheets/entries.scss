@@ -21,6 +21,8 @@ p#diary-content{
     display: flex;
     background-color: white;
     border-radius: 5px;
+    height: 60px;
+    align-items: center;
 
     .created-at {
         padding: 10px;
