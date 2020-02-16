@@ -97,6 +97,11 @@ class EntriesController < ApplicationController
     end
 
     def search
+        if params[:query].nil?
+            flash[:warning] = "No query specified!"
+            redirect_to entries_path and return
+        end
+
         query = params[:query].downcase.strip
         @entries = Entry.select("created_at", "content", "id")
                     .where("user_id = ? AND lower(content) LIKE ?", current_user.id, "%#{query}%")
