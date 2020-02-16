@@ -8,14 +8,9 @@ $ ->
         $(".alert").fadeOut()
       setTimeout flashCallback, 3000
 
-      @onSearchResultClick = (created_at, entry_id) -> 
+      @onSearchResultClick = (created_at, entry_id, content) -> 
         $('#diary-date').html(created_at);
         $('#edit-btn').bind 'click', (ev) =>
           location.href = "#{entry_id}/edit";
+        $('#diary-content').html(content);
         $('#diary-modal').modal('show');
-
-        $.ajax
-          url: "https://deerdiary.herokuapp.com/api/entries/#{entry_id}"
-          type: "GET"
-          success: (data) ->    
-            $('#diary-content').html(data.content);

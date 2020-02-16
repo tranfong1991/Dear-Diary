@@ -4,8 +4,10 @@
             <h1>No Entries Found!</h1>
         <% else %>
             <% @entries.each do |entry| %>
-                <div class="search-result border border-primary" 
-                    onclick="onSearchResultClick('<%= entry.created_at.to_date %>', '<%= entry.id %>')">
+                <div class="search-result" 
+                    onclick="onSearchResultClick('<%= entry.created_at.to_date %>', 
+                    '<%= entry.id %>', 
+                    '<%= entry.content %>')">
                     <div class="created-at"><%= entry.created_at.to_date %></div>
                     <div class="content"><%= entry.content %></div>
                 </div>
