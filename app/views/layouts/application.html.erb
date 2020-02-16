@@ -21,17 +21,34 @@
   <div class="background-image"></div>
   <div class="header">
     <div class="container">
-      <%= link_to root_path do %>
-      <%= image_tag 'notebook.png' %>
-      <span id="header-title">Deer Diary</span>
-      <% end %>
+      <div>
+        <%= link_to root_path do %>
+          <%= image_tag 'notebook.png' %>
+          <span id="header-title">Deer Diary</span>
+        <% end %>
+      </div>
+
+      <div class="center">
+        <% if current_page?(root_path) or current_page?(entries_path) or current_page?(entries_search_path) %>
+          <%= form_tag(entries_search_path, :method => "get") do %>  
+            <div class="search-box input-group">
+              <%= search_field_tag :query, params[:query], placeholder: "Search", class: "form-control"%>
+              <div class="input-group-btn">
+                <button class="btn search-btn">
+                  <i class="fa fa-search" style="color:#FFFFFF"></i>
+                </button>
+              </div>
+            </div>
+          <% end %>
+        <% end %>
+      </div>
 
       <div class="pull-right">
         <% if current_user %>
         <ul>
           <li>
             <div class="dropdown">
-              <button class="dropbtn"><%= current_user.first_name %> <%= current_user.last_name %> &#9660</button>
+              <button class="drop-btn"><%= current_user.first_name %> <%= current_user.last_name %> &#9660</button>
               <div class="dropdown-content">
                 <%= link_to "
                   <div class='dropdown-row'>

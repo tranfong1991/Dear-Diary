@@ -21,13 +21,21 @@
    color: white;
  }
 
-.dropbtn {
+.drop-btn {
     background-color: #c91717;
     color: white;
     padding: 16px;
     font-size: 16px;
     border: none;
     cursor: pointer;
+}
+
+.search-btn {
+  background-color: #c91717;
+}
+
+.search-box {
+  width: 500px;
 }
 
 .dropdown {
@@ -60,7 +68,7 @@
     z-index: 1;
 }
 
-.dropdown:hover .dropbtn {
+.dropdown:hover .drop-btn {
     background-color: #800000;
 }
 
@@ -71,6 +79,7 @@
   margin: 0;
   padding: 0;
   overflow: hidden;
+  height: 100%;
 }
 
 .login h1{
@@ -96,6 +105,8 @@
 }
 
 .container {
+  display: flex;
+  justify-content: space-between;
   padding: 0;
   width: 100%;
   background-color: transparent;
@@ -113,8 +124,14 @@
 /* HEADER */
 
 .pull-right {
-  position: inline;
   margin: 10px 10px 0 0;
+}
+
+.center {
+  flex-grow: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .header {

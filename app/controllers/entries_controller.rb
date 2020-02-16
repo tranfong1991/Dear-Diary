@@ -1,7 +1,7 @@
 include ActionView::Helpers::TextHelper
 
 class EntriesController < ApplicationController
-    before_action :require_user, only: [:getEntry, :index, :new, :create, :edit, :update, :destroy]
+    before_action :require_user, only: [:getEntry, :index, :new, :create, :edit, :update, :search, :destroy]
 
     def getEntry
         if Entry.exists? params[:id]
@@ -55,8 +55,7 @@ class EntriesController < ApplicationController
 
             # Repopulate @entry so that the page retains form data
             @entry = current_user.entries.new(entry_params)
-            render :new
-            return
+            render :new and return
         end
 
         @entry = current_user.entries.new(entry_params)
@@ -95,6 +94,11 @@ class EntriesController < ApplicationController
                 render 'edit'
             end
         end
+    end
+
+    def search
+        query = params[:query].downcase.strip
+        @entries = Entry.select("created_at", "content", "id").where("user_id = ? AND content LIKE ?", current_user.id, "%#{query}%")
     end
 
     def destroy
