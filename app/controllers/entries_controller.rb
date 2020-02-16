@@ -25,7 +25,7 @@ class EntriesController < ApplicationController
         @full.template= Clndr::Template::SIMPLE
         entries.each do |entry|
             # add_event(date, name, other data)
-            @full.add_event(entry.created_at, entry.id.to_s)
+            @full.add_event(entry.created_at.to_s, entry.id.to_s)
         end
         @full.click_event[:click]="function(target) {
             if(target.events.length){
