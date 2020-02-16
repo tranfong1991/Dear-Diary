@@ -10,15 +10,15 @@ class EntriesController < ApplicationController
                 content = entry.content.gsub(/(?:\n\r?|\r\n?)/, '<br>')
                 render json: {'content': content}
             else
-                render json: {status: 404}
+                render json: {status: 401}  # Not authorized
             end
         else
-            render json: {status: 404}
+            render json: {status: 404}  # Not found
         end
     end
 
     def index
-        entries = Entry.where(:user_id => current_user.id)
+        entries = Entry.select("id", "created_at").where(:user_id => current_user.id)
 
         @full = Clndr.new(:diary_cal)
         @full.start_with_month = Time.now
@@ -49,8 +49,7 @@ class EntriesController < ApplicationController
     end
 
     def create
-        entry = Entry.where("created_at = ? AND user_id = ?", entry_params[:created_at], current_user.id).first
-        if not entry.nil?
+        if Entry.exists?(created_at: entry_params[:created_at], user_id: current_user.id)
             # Have to use flash.now so that it doesn't linger after pressing 'cancel'
             flash.now[:warning] = "Entry already exists for this day. Please edit the existing one."
 
