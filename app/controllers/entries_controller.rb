@@ -98,7 +98,10 @@ class EntriesController < ApplicationController
 
     def search
         query = params[:query].downcase.strip
-        @entries = Entry.select("created_at", "content", "id").where("user_id = ? AND lower(content) LIKE ?", current_user.id, "%#{query}%").order(created_at: :desc)
+        @entries = Entry.select("created_at", "content", "id")
+                    .where("user_id = ? AND lower(content) LIKE ?", current_user.id, "%#{query}%")
+                    .paginate(:page => params[:page])
+                    .order(created_at: :desc)
     end
 
     def destroy
