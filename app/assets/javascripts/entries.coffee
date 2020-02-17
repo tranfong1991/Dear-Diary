@@ -8,9 +8,9 @@ $ ->
         $(".alert").fadeOut()
       setTimeout flashCallback, 3000
 
-      @onSearchResultClick = (created_at, entry_id, content) -> 
-        $('#diary-date').html(created_at);
+      @onSearchResultClick = (entry) -> 
+        $('#diary-date').html(entry.created_at);
         $('#edit-btn').bind 'click', (ev) =>
-          location.href = "#{entry_id}/edit";
-        $('#diary-content').html(content);
+          location.href = "#{entry.id}/edit";
+        $('#diary-content').html(entry.content);
         $('#diary-modal').modal('show');
