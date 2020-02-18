@@ -6,6 +6,7 @@
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
   <%= favicon_link_tag 'notebook.png'%>
+  <script src="https://cdn.ckeditor.com/4.13.1/standard/ckeditor.js"></script>
 
   <script>
     (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -32,8 +33,8 @@
         <% if current_user and (current_page?(root_path) or current_page?(entries_path) or current_page?(entries_search_path)) %>
           <%= form_tag(entries_search_path, :method => "get") do %>  
             <div class="search-box input-group">
-              <%= search_field_tag :query, params[:query], placeholder: "Search", class: "form-control"%>
-              <div class="input-group-btn">
+              <%= search_field_tag :query, params[:query], placeholder: "Search", class: "form-control search-field"%>
+              <div class="input-group-btn search-group-btn">
                 <button class="btn search-btn">
                   <i class="fa fa-search" style="color:#FFFFFF"></i>
                 </button>
@@ -89,6 +90,10 @@
   </div>
 
   <%= yield %>
+
+  <script>
+    CKEDITOR.replace('entry_content');
+  </script>
 
   <!-- Footer -->
   <% if not current_user  %>
