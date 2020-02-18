@@ -7,8 +7,7 @@ class EntriesController < ApplicationController
         if Entry.exists? params[:id]
             entry = Entry.find(params[:id])
             if entry.user_id == current_user.id
-                content = entry.content.gsub(/(?:\n\r?|\r\n?)/, '<br>')
-                render json: {'content': content}
+                render json: {'content': entry.content}
             else
                 render json: {status: 401}  # Not authorized
             end
