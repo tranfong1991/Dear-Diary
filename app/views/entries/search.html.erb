@@ -6,7 +6,7 @@
             <% @entries.each do |entry| %>
                 <div class="search-result"
                      onclick="onSearchResultClick(<%= entry.to_json %>)">
-                    <div class="created-at"><%= entry.created_at.to_date %></div>
+                    <div class="created-at"><%= entry.created_at.strftime("%a, %d %b %Y") %></div>
                     <div class="content"><%= entry.content %></div>
                 </div>
                 <br>
