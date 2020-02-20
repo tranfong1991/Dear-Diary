@@ -28,7 +28,7 @@ class EntriesController < ApplicationController
         end
         @full.click_event[:click]="function(target) {
             if(target.events.length){
-                $('#diary-date').html(target.date._i);
+                $('#diary-date').html(target.date.format('dddd, MMMM Do, YYYY'));
                 $('#edit-btn').click(function(){
                     location.href='entries/' + target.events[0].title + '/edit';
                 });
