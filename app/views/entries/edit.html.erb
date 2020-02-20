@@ -2,15 +2,18 @@
     <div class="col-lg-10 col-lg-offset-1 text-center" id="content_div">
         <%= form_for(@entry) do |f| %>
           <%= date_field :entry, :created_at, :placeholder => @entry.created_at, :disabled => true %>
-          <%= f.text_area :content, :placeholder => @entry.content, :id => "entry_content" %>
+          <%= f.text_area :content, :placeholder => @entry.content, :id => "edit_entry_content" %>
           <%= link_to "Cancel", '/entries' %>
           <%= f.submit "Update", class: "btn-primary" %>
         <% end %>
         </br>
         <button class="btn-submit" data-toggle="modal" data-target="#entry-warning-modal">DELETE</button>
-        
     </div>
 </div>
+
+<script>
+  CKEDITOR.replace('edit_entry_content');
+</script>
 
 <!-- Modal -->
 <div class="modal fade" id="entry-warning-modal" tabindex="-1" role="dialog">
