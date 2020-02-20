@@ -1,14 +1,14 @@
 <div class="row">
-    <div class="col-lg-10 col-lg-offset-1 text-center" style="padding-top: 20px;">
+    <div class="col-lg-12 text-center" style="padding-top: 20px;">
         <%= button_to "New Entry", new_entry_path, {:class => "btn-submit", :method => :get} %>
     </div>
-    <div class="col-lg-10 col-lg-offset-1 text-center" style="padding-top: 20px;">
+    <div class="col-lg-12 text-center" style="padding-top: 20px;">
         <%= @full.view %>
     </div>
 </div>
 
 <div class = "row" style="padding-top: 10px;">
-    <div class="col-lg-10 col-lg-offset-4 text-center">
+    <div class="col-lg-12 text-center">
         <div class="clndr-nav">
             <div><%= previous_year_link(:diary_cal, 'PrevY', class:'nav'){true} %></div>
             <div><%= previous_month_link(:diary_cal, 'Prev', class:'nav'){true} %></div>
