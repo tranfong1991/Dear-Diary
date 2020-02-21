@@ -23,3 +23,15 @@ $ ->
           location.href = "#{entry.id}/edit";
         $('#diary-content').html(entry.content);
         $('#diary-modal').modal('show');
+
+      populateYear = () ->
+        midChild = $('.days').children().eq(20)[0];
+        if (!midChild) 
+          return
+        year = midChild.className.match(/\d{4}/g)[0];
+        $('.month-bar').attr('data-year', ' ' + year);
+
+      populateYear();
+      $('.clndr').bind 'DOMSubtreeModified', () -> populateYear();
+        
+        

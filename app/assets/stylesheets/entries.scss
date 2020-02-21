@@ -54,3 +54,7 @@ p#diary-content{
         color:red;
     }
 }
+
+.month-bar::after {
+    content: attr(data-year);
+}
