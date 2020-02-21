@@ -1,7 +1,7 @@
 # Place all the behaviors and hooks related to the matching controller here.
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://coffeescript.org/
-$ ->
+ready = ->
       flashCallback = ->
         $(".alert").fadeOut()
       $(".alert").bind 'click', (ev) =>
@@ -32,6 +32,12 @@ $ ->
         $('.month-bar').attr('data-year', ' ' + year);
 
       populateYear();
-      $('.clndr').bind 'DOMSubtreeModified', () -> populateYear();
-        
+      $(".clndr-nav").on 'click', () =>
+        populateYear();
+
+$(document).ready(ready);
+
+# Do this so that 'ready' will be called in every page load.
+# https://stackoverflow.com/questions/36110789/rails-5-how-to-use-document-ready-with-turbo-links
+$(document).on('turbolinks:load', ready);
         

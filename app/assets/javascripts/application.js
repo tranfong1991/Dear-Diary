@@ -32,7 +32,10 @@ $( document ).ready(function() {
         $(".spinner").hide();
     });
 
-    $(".modal").on("hidden.bs.modal", function(){
+    // Has to bind to 'document' first because event binding
+    // will stop working once switch page, due to components 
+    // being removed and added back.
+    $(document).on("hidden.bs.modal", ".modal", function(){
         $("#diary-date, #diary-content").html("");
     });
 });
