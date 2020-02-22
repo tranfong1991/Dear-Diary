@@ -19,8 +19,6 @@
 //= require_tree .
 
 $( document ).ready(function() {
-    // hide spinner
-    $(".spinner").hide();
   
     // show spinner on AJAX start
     $(document).ajaxStart(function(){
