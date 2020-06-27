@@ -17,17 +17,28 @@
     ga('create', 'UA-65378820-2', 'auto');
     ga('send', 'pageview');
   </script>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body>
   <div class="background-image"></div>
   <div class="header">
     <div class="container">
-      <div>
+      <div class="logo">
         <%= link_to root_path do %>
           <%= image_tag 'notebook.png' %>
           <span id="header-title">Deer Diary</span>
         <% end %>
       </div>
+
+      <% if not current_user  %>
+        <div class="center_logo">
+          <%= link_to root_path do %>
+            <%= image_tag 'notebook.png' %>
+            <span id="header-title">Deer Diary</span>
+          <% end %>
+        </div>
+      <% end %>
 
       <div class="center">
         <% if current_user and (current_page?(root_path) or current_page?(entries_path) or current_page?(entries_search_path)) %>
@@ -91,6 +102,17 @@
 
   <%= yield %>
 
+  <% if current_user  %>
+    <div class="action-bar">
+      <div class="action-container">
+        <%= link_to "<div><i class='fa fa-book'></i></div>".html_safe, entries_path, {:class => "btn-submit"} %>
+        <%= link_to "<div><i class='fa fa-user'></i></div>".html_safe, profile_path, {:class => "btn-submit"} %>
+        <%= link_to "<div><i class='fa fa-cog'></i></div>".html_safe, account_path, {:class => "btn-submit"} %>
+        <%= link_to "<div><i class='fa fa-sign-out'></i></div>".html_safe, logout_path, {:class => "btn-submit", :method => :delete} %>
+      </div>
+    </div>
+  <% end %>
+
   <!-- Modal -->
   <div class="modal fade" id="diary-modal" tabindex="-1" role="dialog">
     <div class="modal-dialog" role="document">
@@ -121,7 +143,7 @@
   </div>
 
   <!-- Footer -->
-  <% if not current_user  %>
+  <% if not current_user %>
     <footer>
       <div class="footer">
         <div class="row">

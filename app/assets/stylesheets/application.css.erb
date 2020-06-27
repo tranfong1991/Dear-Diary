@@ -17,10 +17,10 @@
  *= require spinkit.min
  */
  
- #header-title{
-   font-family: Copperplate, "Copperplate Gothic Light", fantasy;
-   color: white;
- }
+ @viewport {
+  width: device-width ;
+  zoom: 1.0 ;
+}
 
 .drop-btn {
     background-color: #c91717;
@@ -29,6 +29,8 @@
     font-size: 16px;
     border: none;
     cursor: pointer;
+    min-width: 160px;
+    margin-left: 32px;
 }
 
 .search-group-btn {
@@ -126,7 +128,7 @@
   display: flex;
   justify-content: space-between;
   padding: 0;
-  width: 100%;
+  width: inherit;
   background-color: transparent;
   position: relative;
 }
@@ -148,6 +150,8 @@
 .center {
   flex-grow: 1;
   display: flex;
+  height: fit-content;
+  margin-top: 15px;
   align-items: center;
   justify-content: center;
 }
@@ -159,11 +163,9 @@
 
 .header li {
  display: inline;
- margin-left: 30px;
 }
 
 .header img {
-  margin: 0 20px 0 0;
   height: 80px;
   width: 80px;
 }
@@ -294,39 +296,35 @@ input[type=password] {
   }
 }
 
-@media screen and (max-width: 512px) {
-  .pull-right {
-    background-color: #f1f2f2;
-    position: relative;
-    margin: 0;
+@media screen and (max-width: 900px) {
+  .logo, .pull-right {
+    display: none;
+  }
+
+  .center_logo {
+    display: flex;
+    justify-content: center;
     width: 100%;
   }
 
-  .pull-right ul {
-    margin: 0;
-    -webkit-margin-after: 0;
-    -webkit-margin-before: 0;
-    -webkit-padding-start: 0;
-  }
-
-  .pull-right ul li {
+  .action-bar {
     display: block;
-    float: left;
-    margin: 0;
-    padding: 20px 0;
-    text-align: center;
-    width: 50%;
-  }
-
-  .pull-right ul li a {
-    display: block;
+    position: fixed;
+    bottom: 0;
     width: 100%;
-  }
-
-  .img-container {
-    height: 200px;
   }
 }
+
+@media screen and (min-width: 900px) {
+  .action-bar, .center_logo {
+    display: none;
+  }
+}
+
+ #header-title{
+   font-family: Copperplate, "Copperplate Gothic Light", fantasy;
+   color: white;
+ }
 
 div .event {
   cursor: pointer;
@@ -345,4 +343,18 @@ div .event {
 .spinner {
   display: none;
   text-align: -webkit-center;
+}
+
+ul {
+  padding: 0;
+  margin: 0;
+}
+
+.logo {
+  width: 202px;
+}
+
+.action-container {
+  display: flex;
+  justify-content: center;
 }
