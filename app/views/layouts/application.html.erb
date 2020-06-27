@@ -105,6 +105,9 @@
   <% if current_user  %>
     <div class="action-bar">
       <div class="action-container">
+        <% if current_page?(root_path) or current_page?(entries_path) or current_page?(entries_search_path) %>
+          <%= link_to "<div><i class='fa fa-plus'></i></div>".html_safe, new_entry_path, {:class => "btn-submit"} %>
+        <% end %>
         <%= link_to "<div><i class='fa fa-book'></i></div>".html_safe, entries_path, {:class => "btn-submit"} %>
         <%= link_to "<div><i class='fa fa-user'></i></div>".html_safe, profile_path, {:class => "btn-submit"} %>
         <%= link_to "<div><i class='fa fa-cog'></i></div>".html_safe, account_path, {:class => "btn-submit"} %>

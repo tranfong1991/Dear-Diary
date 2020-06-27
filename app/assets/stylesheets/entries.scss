@@ -63,3 +63,9 @@ p#diary-content{
 .month-bar::after {
     content: attr(data-year);
 }
+
+@media screen and (max-width: 900px) {
+    .new-entry-btn {
+        display: none;
+    }
+}
